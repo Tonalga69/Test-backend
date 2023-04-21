@@ -7,11 +7,13 @@ const createTask = async (req = request, res = response) => {
   //in this case i won´t allow creating comments when creating a task
   const { body } = req;
   delete body.comments;
+  const completionDate= new Date(body.completionDate)
 
   const task = await prisma.task
     .create({
       data: {
         ...body,
+        completionDate
       },
     })
     .catch((error) => console.error(error));

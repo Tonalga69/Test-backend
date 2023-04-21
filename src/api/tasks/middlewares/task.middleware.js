@@ -1,9 +1,11 @@
 const { body } = require("express-validator");
 const { CompletionStatus } = require("@prisma/client");
+const {haveErrors}= require("../../../utils/globalValidations")
 
-const tasksValidator = [
+const createTaskValidator = [
   body("status", "status is needed").not().isEmpty(),
-  body("status", "status is a String").isString(),
+  body("status", "status is a String").isString(), 
+  body("status").custom(statusValidator).withMessage(`status must have a valid status ${CompletionStatus.Finished +" or "+ CompletionStatus.Ongoing +" or "+CompletionStatus.Pending}`),
   body("title", "title is needed").not().isEmpty(),
   body("title", "status is a String").isString(),
   body("description", "description is needed").not().isEmpty(),
@@ -12,25 +14,23 @@ const tasksValidator = [
   body("completionDate", "description is a Date").isDate(),
   body("tags", "tags if defined must be a string").optional().isString(),
   body("responsible", "responsible if define must be a string").optional().isString(),
-  statusValidator,
+   haveErrors
 ];
 
-const statusValidator = (req, res, next) => {
+function statusValidator (status){
   try {
-    const { status } = req.body;
-    if (!CompletionStatus[status]) {
-      const error = new Error(
-        `status is must have a valid status ${CompletionStatus.Finished, CompletionStatus.Ongoing, CompletionStatus.Pending}`
-      );
-      error.status = 400; // bad request
-      next(error);
-    }
+    if(status)
+    console.log(status);
+     return (CompletionStatus[status])
 
-    next();
+     return false
+
   } catch (error) {
     console.error(error);
+
+    return false; 
   }
 };
 
 
-module.exports = { tasksValidator, statusValidator};
+module.exports = { createTaskValidator, statusValidator};

@@ -1,7 +1,10 @@
 const express= require("express"); 
 const {createServer}= require("http")
-const Routes= require("./index.routers.js");
+const Routes= require("./index.routes");
 const cors= require("cors"); 
+const bodyParser= require("body-parser"); 
+const morgan = require('morgan');
+
  
 //iniciar servidor express
 const initServer= ()=>{
@@ -10,15 +13,16 @@ const initServer= ()=>{
     const app= express(); 
     
     const HTTPServer= createServer(app); 
+    app.use(bodyParser.json());
 
      
     app.use("/api",Routes); 
+    app.use(morgan("combined")); 
 
     app.use(cors()); 
     app.use(express.urlencoded({
         extended: true
       }));
-    app.use(express.json())
     app.use(express.static('public'));
 
     HTTPServer.listen(port, ()=>{
