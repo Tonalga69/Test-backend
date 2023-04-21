@@ -6,8 +6,33 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+// no user´s model is created, it is not needed 
+model Task {
+  id String @id @unique @default(uuid())
+  status CompletionStatus
+  title String
+  description String 
+  comletionDate DateTime 
+  comments comments[]
+  tags     String?
+  responsible String?
+}
+
+model comments{
+  id String @id @unique @default(uuid())
+  message String 
+  taksid String
+  taks   Task @relation(fields: [taksid], references: [id])
+
+}
+
+enum CompletionStatus {
+  Pending
+  Ongoing
+  Finished
 }
 
 
