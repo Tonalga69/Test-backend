@@ -1,0 +1,10 @@
+{
+    "watch": ["./index", "src/**/*.js"],
+    "ext": "js",
+    "ignore": ["*.test.js", "*.spec.js"],
+    "delay": "1",
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+  
