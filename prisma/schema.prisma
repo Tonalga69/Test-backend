@@ -15,9 +15,10 @@ model Task {
   status CompletionStatus
   title String
   description String 
-  comletionDate DateTime 
+  completionDate DateTime 
   comments comments[]
-  tags     String?
+  //connector does not support array of strings
+  tags        String?
   responsible String?
 }
 
