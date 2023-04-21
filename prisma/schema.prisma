@@ -13,6 +13,7 @@ datasource db {
 model Task {
   id String @id @unique @default(uuid())
   status CompletionStatus
+  owner String 
   title String
   description String 
   completionDate DateTime 
