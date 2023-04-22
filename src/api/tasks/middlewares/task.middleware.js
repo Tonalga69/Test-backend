@@ -15,8 +15,8 @@ const createTaskValidator = [
   body("completionDate", "comletionDate is needed").not().isEmpty(),
   body("completionDate", "description is a Date").isDate(),
   body("tags", "tags if defined must be a string").optional().isString(),
-  body("responsible", "responsible if define must be a string").optional().isString(),
-  body("comments", "comments is a String").optional().isString(), 
+  body("responsible", "responsible if defined must be a string").optional().isString(),
+  body("comments", "comments if defined is a String").optional().isString(), 
 
    haveErrors
 ];
@@ -26,11 +26,11 @@ const updateTaskValidator=[
   body("status").optional().custom(statusValidator).withMessage(`status must have a valid status ${CompletionStatus.Finished +" or "+ CompletionStatus.Ongoing +" or "+CompletionStatus.Pending}`),
   body("owner", "cannot upddate owner").isEmpty(),
   body("id", "cannot upddate id").isEmpty(),
-  body("title", "status is a String").optional().isString(),
-  body("description", "description is a String").optional().isString(),
-  body("completionDate", "description is a Date").optional().isDate(),
+  body("title", "title if defined must be a string").optional().isString(),
+  body("description", "description if defined must be a string").optional().isString(),
+  body("completionDate", "description if defined must be a Date").optional().isDate(),
   body("tags", "tags if defined must be a string").optional().isString(),
-  body("responsible", "responsible if define must be a string").optional().isString(),
+  body("responsible", "responsible if defined must be a string").optional().isString(),
    haveErrors
 ];
 
