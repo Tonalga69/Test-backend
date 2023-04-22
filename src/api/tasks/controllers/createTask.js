@@ -21,7 +21,7 @@ const createTask = async (req = request, res = response) => {
     if (!task) return res.status(400).json({ message: "Bad request" });
   
     return res.status(201).json({
-      data: task,
+      task,
     });
     
   } catch (error) {

@@ -11,7 +11,7 @@ const router= Router();
 router.post("/create", [createTaskValidator], createTask); 
 router.get("/getTaskInfo/:owner/:id",[commonValidator], getTaskInfo); 
 router.delete("/delete/:owner/:id",[commonValidator], deleteTask); 
-router.get("/getShortTasks/:id",getShortTasks)
+router.get("/getShortTasks/:owner",getShortTasks)
 router.put("/update/:owner/:id", [commonValidator, updateTaskValidator],updatetask )
 
 module.exports= router; 

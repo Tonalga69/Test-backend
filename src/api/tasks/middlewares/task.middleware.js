@@ -45,7 +45,6 @@ const commonValidator=[
 function statusValidator (status){
   try {
     if(status)
-    console.log(status);
      return (CompletionStatus[status])
 
      return false

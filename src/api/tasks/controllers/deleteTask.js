@@ -24,7 +24,7 @@ const deleteTask = async (req = request, res = response) => {
       }
     }); 
 
-    return res.status(204).json(deletedTask); 
+    return res.status(200).json(deletedTask); 
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
   }
