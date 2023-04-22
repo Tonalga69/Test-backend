@@ -7,7 +7,6 @@ const createTask = async (req = request, res = response) => {
 
   try {
     const { body } = req;
-    delete body.comments;
     const completionDate= new Date(body.completionDate)
   
     const task = await prisma.task

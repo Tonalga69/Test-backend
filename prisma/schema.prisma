@@ -17,19 +17,12 @@ model Task {
   title String
   description String 
   completionDate DateTime 
-  comments comments[]
+  comments String?
   //connector does not support array of strings
   tags        String?
   responsible String?
 }
 
-model comments{
-  id String @id @unique @default(uuid())
-  message String 
-  taksid String
-  taks   Task @relation(fields: [taksid], references: [id])
-
-}
 
 enum CompletionStatus {
   Pending
